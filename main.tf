@@ -14,7 +14,7 @@ resource "azurerm_kubernetes_cluster" "example" {
   dns_prefix          = "${var.prefix}-k8s"
 
   tags = {
-    "Partner" = "BCBMedical"
+    "Customer" = "CustomerA"
   }
 
   default_node_pool {

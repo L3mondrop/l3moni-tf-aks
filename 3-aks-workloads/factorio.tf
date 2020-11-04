@@ -1,4 +1,5 @@
 resource "helm_release" "l3moni-factorio" {
+
   name  = "l3moni-factorio"
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart = "stable/factorio"
