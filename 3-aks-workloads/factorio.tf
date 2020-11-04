@@ -1,12 +1,16 @@
+data "helm_repository" "stable" {
+  name = "stable"
+  url  = "https://kubernetes-charts.storage.googleapis.com/"
+}
+
 resource "helm_release" "l3moni-factorio" {
 
   name  = "l3moni-factorio"
-  repository = "https://kubernetes-charts.storage.googleapis.com"
   chart = "stable/factorio"
-  version = "1.0.0"
+
 
   values = [
-    "${file("values.yaml")}"
+    file("values.yaml")
   ]
 
   set {
