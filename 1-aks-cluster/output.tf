@@ -3,6 +3,7 @@ output "id" {
 }
 
 output "kube_config" {
+  sensitive = true
   value = azurerm_kubernetes_cluster.example.kube_config_raw
 }
 

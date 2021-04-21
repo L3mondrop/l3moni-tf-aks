@@ -3,21 +3,6 @@ provider "azurerm" {
   features {}
 }
 
-// Setup remote state
-/*
-terraform {
-  backend "azurerm" {
-    resource_group_name  = "rg-terraformstate"
-    storage_account_name = "terrastatestorage2134"
-    container_name       = "terraformdemo"
-    key                  = "dev.terraform.tfstate"
-    use_msi              = true
-    #subscription_id  = "00000000-0000-0000-0000-000000000000"
-    #tenant_id        = "00000000-0000-0000-0000-000000000000"
-  }
-}
-*/
-
 // Creating a resource group
 resource "azurerm_resource_group" "example" {
   name     = "${var.prefix}-k8s-rg"
