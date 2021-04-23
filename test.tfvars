@@ -1,0 +1,7 @@
+prefix = "l3monidemo-tf"
+simpleprefix = "l3monidemotf"
+state_storage_rg_name = "l3monidemo-tf-state-rg"
+location = "West Europe"
+tfstatename = "tfstate"
+environment = "test"
+dns = "lemoni.cloud"
