@@ -1,8 +1,8 @@
 variable "prefix" {
   description = "A prefix used for all resources in this example"
-  default = "l3monitf"
+  default = "default-tf"
 }
 
 variable "dns" {
-  default = "lemoni.cloud"
+  default = "example.com"
 }

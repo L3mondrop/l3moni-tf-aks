@@ -3,8 +3,14 @@ provider "azurerm" {
   features {}
 }
 
+terraform {
+  backend "azurerm" {
+
+  }
+}
+
 // Creating a resource group
-resource "azurerm_resource_group" "example" {
+resource "azurerm_resource_group" "rg" {
   name     = "${var.prefix}-k8s-rg"
   location = var.location
 
@@ -14,13 +20,21 @@ resource "azurerm_resource_group" "example" {
   }
 }
 
-resource "azurerm_kubernetes_cluster" "example" {
+resource "azurerm_log_analytics_workspace" "analyticsws" {
+  name =  "${var.prefix}-log-analytics-ws"
+  location = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  sku = "Free"
+  retention_in_days = 7
+}
+
+resource "azurerm_kubernetes_cluster" "cluster" {
   name                = "${var.prefix}-k8s"
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
   // node_resource_group will allow you to have own naming convention for the node rg
   // it does not have automatic tagging though
-  node_resource_group = "${azurerm_resource_group.example.name}-noderg"
+  node_resource_group = "${azurerm_resource_group.rg.name}-noderg"
   dns_prefix          = "${var.prefix}-k8s"
 
   default_node_pool {
@@ -52,7 +66,8 @@ resource "azurerm_kubernetes_cluster" "example" {
     }
 
     oms_agent {
-      enabled = false
+      enabled = true
+      log_analytics_workspace_id = azurerm_log_analytics_workspace.analyticsws.id
     }
   }
 }

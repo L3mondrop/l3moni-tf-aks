@@ -10,3 +10,11 @@ output "storage_account_name" {
 output "storage_account_rg" {
     value = azurerm_resource_group.rg.name
 }
+
+output "simpleprefix" {
+  value = var.simpleprefix
+}
+
+output "environment" {
+  value = var.environment 
+}

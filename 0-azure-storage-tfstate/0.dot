@@ -1,0 +1,34 @@
+digraph {
+        compound = "true"
+        newrank = "true"
+        subgraph "root" {
+                "[root] azurerm_resource_group.rg (expand)" [label = "azurerm_resource_group.rg", shape = "box"]
+                "[root] azurerm_storage_account.s_account (expand)" [label = "azurerm_storage_account.s_account", shape = "box"]
+                "[root] azurerm_storage_container.s_container (expand)" [label = "azurerm_storage_container.s_container", shape = "box"]
+                "[root] output.key1" [label = "output.key1", shape = "note"]
+                "[root] output.storage_account_name" [label = "output.storage_account_name", shape = "note"]
+                "[root] output.storage_account_rg" [label = "output.storage_account_rg", shape = "note"]
+                "[root] provider[\"registry.terraform.io/hashicorp/azurerm\"]" [label = "provider[\"registry.terraform.io/hashicorp/azurerm\"]", shape = "diamond"]
+                "[root] var.environment" [label = "var.environment", shape = "note"]
+                "[root] var.location" [label = "var.location", shape = "note"]
+                "[root] var.prefix" [label = "var.prefix", shape = "note"]
+                "[root] var.tfstatename" [label = "var.tfstatename", shape = "note"]
+                "[root] azurerm_resource_group.rg (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/azurerm\"]"
+                "[root] azurerm_resource_group.rg (expand)" -> "[root] var.location"
+                "[root] azurerm_storage_account.s_account (expand)" -> "[root] azurerm_resource_group.rg (expand)"
+                "[root] azurerm_storage_account.s_account (expand)" -> "[root] var.prefix"
+                "[root] azurerm_storage_container.s_container (expand)" -> "[root] azurerm_storage_account.s_account (expand)"
+                "[root] azurerm_storage_container.s_container (expand)" -> "[root] var.tfstatename"
+                "[root] meta.count-boundary (EachMode fixup)" -> "[root] azurerm_storage_container.s_container (expand)"
+                "[root] meta.count-boundary (EachMode fixup)" -> "[root] output.key1"
+                "[root] meta.count-boundary (EachMode fixup)" -> "[root] output.storage_account_name"
+                "[root] meta.count-boundary (EachMode fixup)" -> "[root] output.storage_account_rg"
+                "[root] meta.count-boundary (EachMode fixup)" -> "[root] var.environment"
+                "[root] output.key1" -> "[root] azurerm_storage_account.s_account (expand)"
+                "[root] output.storage_account_name" -> "[root] azurerm_storage_account.s_account (expand)"
+                "[root] output.storage_account_rg" -> "[root] azurerm_resource_group.rg (expand)"
+                "[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] azurerm_storage_container.s_container (expand)"
+                "[root] root" -> "[root] meta.count-boundary (EachMode fixup)"
+                "[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)"
+        }
+}
