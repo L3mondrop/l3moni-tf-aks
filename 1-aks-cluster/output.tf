@@ -22,3 +22,12 @@ output "cluster_ca_certificate" {
 output "host" {
   value = azurerm_kubernetes_cluster.cluster.kube_config.0.host
 }
+
+output "cluster_resource_group" {
+  value = azurerm_kubernetes_cluster.cluster.resource_group_name
+}
+
+output "cluster_name" {
+  value = azurerm_kubernetes_cluster.cluster.name
+}
+  

@@ -1,3 +1,13 @@
+<# 
+Intro
+.NOTES
+  Version:        0.1
+  Author:         Mikko Kasanen (lemoni.cloud)
+  Creation Date:  4-26-2021
+#>
+
+
+
 echo "AKS Destroyer (in reverse order)"
 
 # Destroying AzureDNS
