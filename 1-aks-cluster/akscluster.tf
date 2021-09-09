@@ -49,6 +49,7 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   // it does not have automatic tagging though
   node_resource_group = "${azurerm_resource_group.rg.name}-noderg"
   dns_prefix          = "${var.prefix}-k8s"
+  automatic_channel_upgrade = "stable"
 
   default_node_pool {
     name       = "default"
@@ -83,4 +84,17 @@ resource "azurerm_kubernetes_cluster" "cluster" {
       log_analytics_workspace_id = azurerm_log_analytics_workspace.analyticsws.id
     }
   }
+}
+
+output "dns_resource_group" {
+  value = azurerm_dns_zone.public.resource_group_name
+}
+
+variable "dns" {
+  default = "example.com"
+}
+
+resource "azurerm_dns_zone" "public" {
+  name                = var.dns
+  resource_group_name = azurerm_kubernetes_cluster.cluster.node_resource_group
 }

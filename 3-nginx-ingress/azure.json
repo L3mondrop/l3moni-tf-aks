@@ -1,0 +1,6 @@
+{
+    "tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47",
+    "subscriptionId": "6363e279-3c1d-4811-aab8-6949ca991fd2",
+    "resourceGroup": "l3monitf-k8s-noderg",
+    "useManagedIdentityExtension": true
+  }

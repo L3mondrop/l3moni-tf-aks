@@ -43,9 +43,16 @@ cd .\3-nginx-ingress
 echo "Installing NGINX-Ingress to Cluster"
 
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo add jetstack https://charts.jetstack.io
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo update
 
 terraform init -backend-config="storage_account_name=$Storage_Account_Name" -backend-config="container_name=tfstate" -backend-config="access_key=$KEY1" -backend-config="key=$simpleprefix-nginxingress.$environment.tfstate" -backend-config="resource_group_name=$storage_account_rg"
 terraform plan -var-file="../test.tfvars" -out "out.plan"
 terraform apply "out.plan"
+cd ..
+
+# Installing cert-manager
+cd .\4-cert-manager
 
 

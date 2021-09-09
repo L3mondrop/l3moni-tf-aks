@@ -12,7 +12,11 @@ resource "azurerm_resource_group" "rg" {
     }
 }
 
-resource "azurerm_dns_zone" "example-public" {
+output "dns_resource_group" {
+  value = azurerm_dns_zone.public.resource_group_name
+}
+
+resource "azurerm_dns_zone" "public" {
   name                = var.dns
   resource_group_name = azurerm_resource_group.rg.name
 }
